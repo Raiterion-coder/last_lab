@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+
+import java.util.function.UnaryOperator;
 
 public class Task3Controller {
     @FXML
@@ -15,18 +18,26 @@ public class Task3Controller {
 
     @FXML
     private void initialize() {
+        // Добавляем блокировку ввода символов кроме цифр
         setNumericOnly(quantity1);
         setNumericOnly(quantity2);
         setNumericOnly(quantity3);
+
+        // Добавляем слушатель для обновления цены при изменении ввода
+        quantity1.textProperty().addListener((observable, oldValue, newValue) -> updateOrder());
+        quantity2.textProperty().addListener((observable, oldValue, newValue) -> updateOrder());
+        quantity3.textProperty().addListener((observable, oldValue, newValue) -> updateOrder());
     }
 
-
     private void setNumericOnly(TextField textField) {
-        textField.setOnKeyTyped(event -> {
-            if (!Character.isDigit(event.getCharacter().charAt(0))) {
-                event.consume();
+        UnaryOperator<TextFormatter.Change> filter = change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Разрешаем только цифры
+                return change;
             }
-        });
+            return null; // Отклоняем нецифровые символы
+        };
+        textField.setTextFormatter(new TextFormatter<>(filter));
     }
 
     @FXML
@@ -34,31 +45,31 @@ public class Task3Controller {
         int sum = 0;
         StringBuilder summary = new StringBuilder("Ваш заказ: ");
 
-        // Блюдо 1
+        // Обновляем количество и стоимость для Блюда 1
         if (dish1.isSelected()) {
             int qty1 = getQuantity(quantity1);
-            int price1 = 300 * qty1;
+            int price1 = 100 * qty1;
             sum += price1;
-            summary.append("Шашлык машлык (" + qty1 + " шт.) - " + price1 + " руб., ");
+            summary.append("Блюдо 1 (").append(qty1).append(" шт.) - ").append(price1).append(" руб., ");
         }
 
-        // Блюдо 2
+        // Обновляем количество и стоимость для Блюда 2
         if (dish2.isSelected()) {
             int qty2 = getQuantity(quantity2);
             int price2 = 150 * qty2;
             sum += price2;
-            summary.append("бёрн (" + qty2 + " шт.) - " + price2 + " руб., ");
+            summary.append("Блюдо 2 (").append(qty2).append(" шт.) - ").append(price2).append(" руб., ");
         }
 
-        // Блюдо 3
+        // Обновляем количество и стоимость для Блюда 3
         if (dish3.isSelected()) {
             int qty3 = getQuantity(quantity3);
             int price3 = 200 * qty3;
             sum += price3;
-            summary.append("литр энжера (" + qty3 + " шт.) - " + price3 + " руб., ");
+            summary.append("Блюдо 3 (").append(qty3).append(" шт.) - ").append(price3).append(" руб., ");
         }
 
-
+        // Удаляем последнюю запятую, если нужно
         if (summary.length() > 12) {
             summary.setLength(summary.length() - 2);
         }
@@ -67,16 +78,11 @@ public class Task3Controller {
         totalPrice.setText("Итоговая сумма: " + sum + " руб.");
     }
 
-    // Метод для получения количества с проверкой на корректность (нельзя отрицательное число)
-    private int getQuantity(TextField quantityField) {
+    private int getQuantity(TextField textField) {
         try {
-            int qty = Integer.parseInt(quantityField.getText());
-            if (qty < 0) {
-                return 0; // Если количество отрицательное, считаем 0
-            }
-            return qty;
+            return Integer.parseInt(textField.getText());
         } catch (NumberFormatException e) {
-            return 0; // Если введено не число, считаем количество равным 0
+            return 0; // Возвращаем 0, если поле пустое или не число
         }
     }
 }

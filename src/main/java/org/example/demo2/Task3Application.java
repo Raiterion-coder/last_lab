@@ -10,10 +10,11 @@ public class Task3Application extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Task3.fxml"));
-        primaryStage.setTitle("Заказ в ресторане");
+        primaryStage.setTitle("Корзина в пятёрочке");
         primaryStage.setScene(new Scene(root, 350, 250));
-        primaryStage.setMinWidth(350);
+        primaryStage.setMinWidth(790);
         primaryStage.setMinHeight(250);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

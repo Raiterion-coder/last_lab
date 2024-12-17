@@ -16,7 +16,7 @@ public class Task4Controller {
     private void appendDigit(javafx.event.ActionEvent event) {
         String text = ((Button) event.getSource()).getText();
 
-        // Если вводится точка, проверим, есть ли уже точка в текущем числе
+
         if (text.equals(".")) {
             if (display.getText().contains(".")) {
                 return; // Если точка уже есть, ничего не делаем
