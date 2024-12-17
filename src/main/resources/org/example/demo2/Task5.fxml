@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.demo2.Task5Controller">
+    <Label text="Выберите цвета полос"/>
+    <HBox>
+        <RadioButton text="Красный" fx:id="red1" toggleGroup="$group1"/>
+        <RadioButton text="Зеленый" fx:id="green1" toggleGroup="$group1"/>
+    </HBox>
+    <HBox>
+        <RadioButton text="Синий" fx:id="blue2" toggleGroup="$group2"/>
+        <RadioButton text="Желтый" fx:id="yellow2" toggleGroup="$group2"/>
+    </HBox>
+    <Button text="Нарисовать" onAction="#drawFlag"/>
+    <Label fx:id="result"/>
+</VBox>

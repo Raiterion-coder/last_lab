@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.demo2.Task2Controller">
+    <CheckBox fx:id="checkBox1" text="Показать элемент 1" onAction="#toggleVisibility1"/>
+    <CheckBox fx:id="checkBox2" text="Показать элемент 2" onAction="#toggleVisibility2"/>
+    <CheckBox fx:id="checkBox3" text="Показать элемент 3" onAction="#toggleVisibility3"/>
+
+    <Button fx:id="button1" text="Элемент 1" visible="false"/>
+    <Button fx:id="button2" text="Элемент 3" visible="false"/>
+
+    <TextField fx:id="textField1" promptText="Элемент 2" visible="false"/>
+</VBox>

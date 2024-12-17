@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.demo2.Task3Controller">
+    <Label text="Меню"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <CheckBox fx:id="dish1" text="Шашлык машлык - 300 руб." onAction="#updateOrder"/>
+        <TextField fx:id="quantity1" promptText="0" prefWidth="50" onKeyReleased="#updateOrder" />
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <CheckBox fx:id="dish2" text="бёрн - 150 руб." onAction="#updateOrder"/>
+        <TextField fx:id="quantity2" promptText="0" prefWidth="50" onKeyReleased="#updateOrder" />
+    </HBox>
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <CheckBox fx:id="dish3" text="литр энжера - 200 руб." onAction="#updateOrder"/>
+        <TextField fx:id="quantity3" promptText="0" prefWidth="50" onKeyReleased="#updateOrder" />
+    </HBox>
+
+    <Label fx:id="orderSummary" text="Ваш заказ: "/>
+    <Label fx:id="totalPrice" text="Итоговая сумма: 0 руб."/>
+</VBox>
